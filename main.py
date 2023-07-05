@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import requests
+from bs4 import BeautifulSoup
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from models.match import Match
+from pandas_processor import PandasProcessor
+from website_to_match_processor import WebsiteToMatchProcessor
 
+WEB_SITE_URLS = [
+    "https://www.espncricinfo.com/series/vitality-blast-2023-1347399/derbyshire-vs-lancashire-north-group-1347569/full-scorecard"
+]
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+pandas_processor = PandasProcessor()
 
+for website_url in WEB_SITE_URLS:
+    website_to_match_processor = WebsiteToMatchProcessor(website_url)
+    match = website_to_match_processor.get_match_from_website()
+    pandas_processor.add_match(match)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
