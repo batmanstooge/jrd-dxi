@@ -146,7 +146,6 @@ class SoupToMatchProcessor:
         team_b.team_name = team_b_name
         match.team_a = team_a
         match.team_b = team_b
-        print(match)
         team_players_processor = TeamPlayersProcessor()
         team_a_players_who_batted = team_players_processor.get_players_who_batted(self.team_a_batter_trs)
         team_b_players_who_batted = team_players_processor.get_players_who_batted(self.team_b_batter_trs)
@@ -168,6 +167,7 @@ class SoupToMatchProcessor:
 
     def process_soup(self, soup):
         batting_ths = soup.findAll("th", string="BATTING")
+        print(f"Robin: {batting_ths}")
         batting_th_trs = get_batting_th_trs(batting_ths)
         batting_th_tr_theads = get_batting_th_tr_theads(batting_th_trs)
         batting_tables = get_batting_tables(batting_th_tr_theads)

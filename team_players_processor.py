@@ -25,10 +25,12 @@ class TeamPlayersProcessor:
         return players
 
     def get_players_who_did_not_bat(self, batters_who_did_not_bat_tr):
+        batters_who_did_not_bat = []
+        if batters_who_did_not_bat_tr is None:
+            return batters_who_did_not_bat
         batters_who_did_not_bat_tr_text = batters_who_did_not_bat_tr.getText()
         batters_who_did_not_bat_tr_text = batters_who_did_not_bat_tr_text.replace("Did not bat:", "")
         batters_who_did_not_bat_tr_array = batters_who_did_not_bat_tr_text.split(",")
-        batters_who_did_not_bat = []
         for batter_who_did_not_bat_text in batters_who_did_not_bat_tr_array:
             batter_who_did_not_bat = Player()
             player_name_processor = PlayerNameProcessor()
